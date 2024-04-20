@@ -2,6 +2,7 @@
 ## Vzpostavitev githuba v urejevalniku
 - uporabljam vs Code, kar ni nujno, lahko je poljuben IDE
 - -git clone URL
+- -git branch (preveri na kerem branchu)
 - URL je na githubu
 
 
