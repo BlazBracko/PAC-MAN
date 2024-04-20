@@ -1,8 +1,9 @@
 # PAC-MAN
 
 ## Preveri status (mora bit up to date)
-git status
-### Output: On branch main. Your branch is up to date with 'origin/main'.
+-git status
+[Output: On branch main. Your branch is up to date with 'origin/main'.]
+
 
 # Create a new branch for JIRA issue PM-1
 git checkout -b PM-1
