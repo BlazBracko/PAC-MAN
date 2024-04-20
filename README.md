@@ -33,4 +33,9 @@
 - git push -u origin PM-1
 > **Warning**: Pazi ime na koncu, tvoj jira issue key.
 
+# Format commit spročil
+- "PM-1 popravki-dizajna-labiritna"
+> **Warning**: Za ISSUE-key daj presledek, na kratko opises kaj si naredil, presledke zamenjamo z znakom "-"
+
+
 
