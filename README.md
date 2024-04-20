@@ -1,7 +1,8 @@
 # PAC-MAN
 ## Vzpostavitev githuba v urejevalniku
 - uporabljam vs Code, kar ni nujno, lahko je poljuben IDE
-- -git clone [<URL>](https://github.com/BlazBracko/PAC-MAN.git)
+- -git clone URL
+- URL je na githubu
 
 
 ## Preveri status 
