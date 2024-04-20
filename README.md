@@ -3,6 +3,9 @@
 - uporabljam vs Code, kar ni nujno, lahko je poljuben IDE
 - -git clone URL
 - -git branch (preveri na kerem branchu)
+- -git checkout main
+- -git pull
+<br />
 - URL je na githubu
 
 
