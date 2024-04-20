@@ -5,8 +5,10 @@
 [Output: On branch main. Your branch is up to date with 'origin/main'.]
 
 
-# Create a new branch for JIRA issue PM-1
-git checkout -b PM-1
+# Ustvari nov branch (ime je tvoj task na JIRA)
+-git checkout -b PM-1
+<img width="307" alt="image" src="https://github.com/BlazBracko/PAC-MAN/assets/134056113/8fdd8c2b-6993-4fab-925c-08b56553a846">
+
 # Output: Switched to a new branch 'PM-1'
 
 # Check which branch you are on
