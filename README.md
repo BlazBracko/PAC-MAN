@@ -1,12 +1,12 @@
 # PAC-MAN
 
 ## Preveri status (mora bit up to date)
--git status
+-git status<br />
 [Output: On branch main. Your branch is up to date with 'origin/main'.]
 
 
-# Ustvari nov branch (ime je tvoj task na JIRA)
--git checkout -b PM-1
+## Ustvari nov branch (ime je tvoj task na JIRA)
+-git checkout -b PM-1<br />
 <img width="307" alt="image" src="https://github.com/BlazBracko/PAC-MAN/assets/134056113/8fdd8c2b-6993-4fab-925c-08b56553a846">
 
 # Output: Switched to a new branch 'PM-1'
