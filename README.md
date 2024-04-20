@@ -2,8 +2,10 @@
 
 ## Preveri status (mora bit up to date)
 - git status<br />
+**Expected Output**:
+
 [Output: On branch main. Your branch is up to date with 'origin/main'.]
-> **Warning**: Make sure you're pushing to the correct branch to prevent conflicts or erroneous updates.
+> **Warning**: Status mora biti vedno pred začetkom novega taska "Up to date".
 
 
 
