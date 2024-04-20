@@ -3,6 +3,8 @@
 ## Preveri status (mora bit up to date)
 - git status<br />
 [Output: On branch main. Your branch is up to date with 'origin/main'.]
+> **Warning**: Make sure you're pushing to the correct branch to prevent conflicts or erroneous updates.
+
 
 
 ## Ustvari nov branch (ime je tvoj task na JIRA)
@@ -23,5 +25,3 @@
 
 # Pushaj spremembe
 - git push -u origin PM-1
-# Output: [new branch] PM-1 -> PM-1
-#         Branch 'PM-1' set up to track remote branch 'PM-1' from 'origin'.
