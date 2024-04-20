@@ -5,9 +5,7 @@
 - -git branch (preveri na kerem branchu)
 - -git checkout main
 - -git pull
-<br />
 > **Warning**: URL je na githubu.
-> > **Warning**: Status mora biti vedno pred začetkom novega taska "Up to date".
 
 
 
