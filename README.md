@@ -7,6 +7,8 @@
 - -git pull
 <br />
 > **Warning**: URL je na githubu.
+> > **Warning**: Status mora biti vedno pred začetkom novega taska "Up to date".
+
 
 
 ## Preveri status 
