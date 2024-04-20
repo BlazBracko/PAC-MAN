@@ -7,14 +7,13 @@
 
 ## Ustvari nov branch (ime je tvoj task na JIRA)
 -git checkout -b PM-1<br />
-<img width="307" alt="image" src="https://github.com/BlazBracko/PAC-MAN/assets/134056113/8fdd8c2b-6993-4fab-925c-08b56553a846">
+<img width="307" alt="image" src="https://github.com/BlazBracko/PAC-MAN/assets/134056113/8fdd8c2b-6993-4fab-925c-08b56553a846"> <br />
+[Output: Switched to a new branch 'PM-1']
 
-# Output: Switched to a new branch 'PM-1'
-
-# Check which branch you are on
-git branch
-# Output: * PM-1
-#         main
+# Redno preverjaj na katerem branchu si
+-git branch
+[Output: * PM-1 <br />
+         main ]
 
 # Make changes and stage them
 git add --all
