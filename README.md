@@ -6,7 +6,7 @@
 - -git checkout main
 - -git pull
 <br />
-- URL je na githubu
+> **Warning**: URL je na githubu.
 
 
 ## Preveri status 
