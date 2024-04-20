@@ -1,9 +1,7 @@
 # PAC-MAN
 
-## Preveri status (mora bit up to date)
-- git status<br />
-**Expected Output**:
-
+## Preveri status 
+- git status<br /><br />
 [Output: On branch main. Your branch is up to date with 'origin/main'.]
 > **Warning**: Status mora biti vedno pred začetkom novega taska "Up to date".
 
