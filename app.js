@@ -1,3 +1,36 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const playButton = document.getElementById('playButton');
+    const aboutButton = document.getElementById('aboutButton');
+    const settingsButton = document.getElementById('settingsButton');
+    const game = document.getElementById('game');
+    const menu = document.getElementById('menu');
+    const about = document.getElementById('about');
+    const settings = document.getElementById('settings');
+
+    playButton.addEventListener('click', () => {
+        menu.style.display = 'none';
+        game.style.display = 'block';
+        initGame();
+    });
+
+    aboutButton.addEventListener('click', () => {
+        menu.style.display = 'none';
+        about.style.display = 'block';
+    });
+
+    settingsButton.addEventListener('click', () => {
+        menu.style.display = 'none';
+        settings.style.display = 'block';
+    });
+
+    function backToMenu() {
+        const sections = document.querySelectorAll('#game, #about, #settings');
+        sections.forEach(sec => sec.style.display = 'none');
+        menu.style.display = 'block';
+    }
+
+    window.backToMenu = backToMenu; // Make it globally accessible for inline HTML onclick
+
 const layout = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -28,6 +61,7 @@ const layout = [
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ]
+});
 // 0 - pac-dots
 // 1 - wall
 // 2 - ghost-lair
