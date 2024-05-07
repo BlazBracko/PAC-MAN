@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  body, html {
+    overflow: hidden; /* This will prevent scrolling */
+  }
+  
+  h3 {
+    margin: 10px 0;
+    font-size: 1.5em;
+    color: #1f565e; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  #score {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #064755; 
+  }
+  
+  h3 span {
+    padding: 5px 10px;
+    background-color: rgba(255, 204, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(132, 106, 2, 0.75);
+  }
+  
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 560px; 
+    height: 560px;
+    border: 3px solid #333;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    margin: auto;
+  }
+  
+  .grid div {
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+  
+  }
+  
+  .pac-dot {
+    background-color: red;   
+    border: 5px solid white;
+    box-sizing: border-box;
+  }
+  
+  .wall {
+    background: linear-gradient(135deg, #3a3a3c, #202022);
+  }
+  
+  .power-pellet {
+    background-color: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffd700;
+  }
+  
+  .blinky, .pinky, .inky, .clyde, .pac-man {
+    border-radius: 50%;
+  }
+  
+  .blinky {
+    background-color: green;
+  }
+  
+  .pinky {
+    background-color: pink;
+  }
+  
+  .inky {
+    background-color: cyan;
+  }
+  
+  .clyde {
+    background-color: orange;     
+  }
+  
+  .pac-man {
+    background-color: rgba(255, 255, 0, 0.809);
+    border-radius: 10px;
+  }
+  
+  .scared-ghost {
+    background-color: aquamarine;
+    animation: flash 0.5s alternate infinite;
+  }
+  
+  @keyframes flash {
+    from { opacity: 1.0; }
+    to { opacity: 0.5; }
+  }
+  
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    color: #f8f8f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .menu {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #44475a;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ff79c6;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .menu-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #f8f8f2;
+    background-color: #6272a4;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu-button:hover {
+    background-color: #ff79c6;
+  }
+  
+  .menu-button:active {
+    transform: scale(0.98); /* Slightly shrink when the button is clicked */
+  }
+  
+  
+  /* Additional styles for game, about, and settings content */
+  #about h2, #settings h2 {
+    color: #fa507a;
+  }
+  
+  /* Back buttons in About and Settings */
+  #about button, #settings button {
+    margin-top: 20px;
+  }
