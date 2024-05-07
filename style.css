@@ -1,167 +1,189 @@
-body {
+/* Osnovni reset in globalne nastavitve */
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
     color: white;
+    overflow: hidden; /* Prevent scrolling */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-  }
-  body, html {
-    overflow: hidden; /* This will prevent scrolling */
-  }
-  
-  h3 {
-    margin: 10px 0;
+}
+
+/* Nastavitve za naslove in besedilo */
+/* Nastavitve za naslove in besedilo */
+h3 {
+    margin: 10px 0 20px;
     font-size: 1.5em;
-    color: #1f565e; 
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  }
-  
-  #score {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #064755; 
-  }
-  
-  h3 span {
+    color: rgb(74, 146, 255);
+    position: relative;
+    display: inline-block;
+}
+
+h3 span {
+    display: inline-block;
     padding: 5px 10px;
-    background-color: rgba(255, 204, 0, 0.2);
+    background-color: rgba(216, 232, 255, 0.2);
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(132, 106, 2, 0.75);
-  }
-  
-  .grid {
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+#score, #level {
+    font-size: 0.7em;
+    font-weight: bold;
+    color: #064755;
+    background-color: rgba(74, 146, 255, 0.3);  /* Dodana pol-prosojna modra ozadje za boljši kontrast */
+    border-radius: 8px;
+    padding: 5px 15px;
+    margin: 5px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);  /* Dodan senci za večjo globino */
+}
+
+h3:hover span {
+    transform: scale(1.1); /* Povečava ob premiku miške čez element */
+    background-color: rgba(216, 232, 255, 0.5);
+}
+
+/* Poudarjanje animacije za score in level */
+#score, #level {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(74, 146, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 10px 10px rgba(74, 146, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(74, 146, 255, 0);
+    }
+}
+
+
+/* Pacman igra in elementi */
+.pacman {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.grid {
     display: flex;
     flex-wrap: wrap;
-    width: 560px; 
+    width: 560px;
     height: 560px;
-    border: 3px solid #333;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
     position: relative;
     margin: auto;
-  }
-  
-  .grid div {
+}
+
+.grid div {
     width: 20px;
     height: 20px;
     box-sizing: border-box;
-  
-  }
-  
-  .pac-dot {
-    background-color: red;   
+}
+
+.pac-dot, .power-pellet {
+    border-radius: 50%;
+}
+
+.pac-dot {
+    background-color: red;
     border: 5px solid white;
-    box-sizing: border-box;
-  }
-  
-  .wall {
-    background: linear-gradient(135deg, #3a3a3c, #202022);
-  }
-  
-  .power-pellet {
+}
+
+.wall {
+    background-color: black;
+}
+
+.power-pellet {
     background-color: #ffd700;
-    border-radius: 50%;
     box-shadow: 0 0 10px #ffd700;
-  }
-  
-  .blinky, .pinky, .inky, .clyde, .pac-man {
+}
+
+/* Duhovi in Pac-Man */
+.blinky, .pinky, .inky, .clyde, .pac-man {
     border-radius: 50%;
-  }
-  
-  .blinky {
-    background-color: green;
-  }
-  
-  .pinky {
-    background-color: pink;
-  }
-  
-  .inky {
-    background-color: cyan;
-  }
-  
-  .clyde {
-    background-color: orange;     
-  }
-  
-  .pac-man {
-    background-color: rgba(255, 255, 0, 0.809);
-    border-radius: 10px;
-  }
-  
-  .scared-ghost {
+}
+
+.blinky { background-color: green; }
+.pinky { background-color: pink; }
+.inky { background-color: cyan; }
+.clyde { background-color: orange; }
+.pac-man { background-color: rgba(255, 255, 0, 0.809); }
+
+.scared-ghost {
     background-color: aquamarine;
     animation: flash 0.5s alternate infinite;
-  }
-  
-  @keyframes flash {
+}
+
+@keyframes flash {
     from { opacity: 1.0; }
     to { opacity: 0.5; }
-  }
-  
-  body, html {
-    height: 100%;
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: white;
-    color: #f8f8f2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .menu {
+}
+
+/* Menu in interaktivni elementi */
+.menu {
     width: 100%;
     max-width: 600px;
-    padding: 20px;
-    background-color: #44475a;
-    border-radius: 8px;
+    margin-bottom: 40px;
+    background-color: #000000; /* Spremenjeno v črno za boljši kontrast */
+    border-radius: 2%; /* Močno zaobljen rob */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
+    padding-top: 30px;
+}
+
+.title {
     font-size: 2em;
     margin-bottom: 20px;
     color: #ff79c6;
-  }
-  
-  .button-container {
+}
+
+.button-container {
     display: flex;
     justify-content: center;
     gap: 10px;
-  }
-  
-  .menu-button {
+    margin: 40px 40px 40px 40px;
+}
+
+.menu-button {
     padding: 10px 20px;
     font-size: 1em;
     color: #f8f8f2;
-    background-color: #6272a4;
+    background-color: rgb(74, 146, 255);
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .menu-button:hover {
+}
+
+.menu-button.back-to-menu {
+    display: block;  /* Gumb zavzame celotno vrstico */
+    margin-top: 10px;  /* Dodaten prostor nad gumbom za boljšo vidljivost */
+    width: auto;  /* Omogoča, da gumb zavzame širino glede na svojo vsebino */
+    margin-left: auto;
+    margin-right: auto;  /* Centrira gumb v kontejnerju */
+}
+
+
+.menu-button:hover {
     background-color: #ff79c6;
-  }
-  
-  .menu-button:active {
+}
+
+.menu-button:active {
     transform: scale(0.98); /* Slightly shrink when the button is clicked */
-  }
-  
-  
-  /* Additional styles for game, about, and settings content */
-  #about h2, #settings h2 {
+}
+
+/* Additional styles for About and Settings */
+#about h2, #settings h2 {
     color: #fa507a;
-  }
-  
-  /* Back buttons in About and Settings */
-  #about button, #settings button {
+}
+
+#about button, #settings button {
     margin-top: 20px;
-  }
+}
