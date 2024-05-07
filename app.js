@@ -82,6 +82,56 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         createBoard();
+
+        function movePacman() {
+            let potentialIndex = pacmanCurrentIndex + requestedDirection;
+            if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                direction = requestedDirection; 
+            }
+
+            potentialIndex = pacmanCurrentIndex + direction;
+            if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                squares[pacmanCurrentIndex].classList.remove("pac-man");
+                pacmanCurrentIndex = potentialIndex;
+                squares[pacmanCurrentIndex].classList.add("pac-man");
+            }
+
+            pacDotEaten();
+            powerPelletEaten();
+            checkForGameOver();
+            checkForWin();
+        }
+
+        
+        document.addEventListener("keydown", function(e) {
+            switch (e.key) {
+                case "ArrowLeft": requestedDirection = -1; break;
+                case "ArrowUp": requestedDirection = -width; break;
+                case "ArrowRight": requestedDirection = 1; break;
+                case "ArrowDown": requestedDirection = width; break;
+            }
+        });
+
+        moveInterval = setInterval(movePacman, 200);
+
+        function pacDotEaten() {
+            if (squares[pacmanCurrentIndex].classList.contains("pac-dot")) {
+                score++
+                scoreDisplay.innerHTML = score
+                squares[pacmanCurrentIndex].classList.remove("pac-dot")
+            }
+        }
+
+        function powerPelletEaten() {
+            if (squares[pacmanCurrentIndex].classList.contains("power-pellet")) {
+                score += 10
+                scoreDisplay.innerHTML = score
+                ghosts.forEach(ghost => ghost.isScared = true)
+                setTimeout(unScareGhosts, 10000)
+                squares[pacmanCurrentIndex].classList.remove("power-pellet")
+            }
+        }
+
     }
 
 });
