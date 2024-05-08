@@ -7,41 +7,54 @@
 </head>
 <body>
     <div id="menu" class="menu">
-        <h1 class="title">Pac-Man Game</h1>
+        <h1 class="title" data-translate="pacMan"></h1>
         <div class="button-container">
-            <button class="menu-button" id="playButton">Play</button>
-            <button class="menu-button" id="aboutButton">About</button>
-            <button class="menu-button" id="settingsButton">Settings</button>
-            <button class="menu-button" id="storyButton">Story</button>
+            <button class="menu-button" id="playButton" data-translate="play"></button>
+            <button class="menu-button" id="aboutButton" data-translate="about"></button>
+            <button class="menu-button" id="settingsButton"data-translate="settings"></button>
+            <button class="menu-button" id="storyButton" data-translate="story"></button>
         </div>
     </div>
     <div id="game" style="display:none;">
         <h3 class="pacman">Pac-man</h3>
         <div class="grid"></div>
-        <h3>Score: <span id="score">0</span></h3>
-        <h3>Level: <span id="level">1</span></h3>
-        <button onclick="backToMenu()" class="menu-button back-to-menu">Back to Menu</button>
+        <h3><span data-translate="score"></span> <span id="score">0</span></h3>
+        <h3><span data-translate="level"></span> <span id="level">1</span></h3>
+        <button onclick="backToMenu()" class="menu-button back-to-menu" data-translate="backMenu"></button>
 
     </div>
     <div id="about" style="display:none;">
-        <h2>About the Game</h2>
-        <p style="color: black;">Version 1.0</p>
-        <p style="color: black;">Developers:</p>
+        <h2 data-translate="about"></h2>
+        <p style="color: black;" data-translate="version">Version 1.0</p>
+        <p style="color: black;" data-translate="developers">Developers:</p>
         <p style="color: black;">Blaž Bračko, Aneja Pašalič, Emanuel Planko</p>
-        <button onclick="backToMenu()">Back to Menu</button>
+        <button onclick="backToMenu()" data-translate="backMenu"></button>
     </div>
     <div id="settings" style="display:none;">
-        <h2>Settings</h2>
-        <p style="color: black;">Configure your game settings here.</p>
-        <h1 data-translate="welcome"></h1>
-        <p data-translate="description">something here</p>
-        <button class="menu-button" id="enButton">English</button>
-        <button class="menu-button" id="slButton">Slovenian</button>
-        <button onclick="backToMenu()">Back to Menu</button>
+        <h2 data-translate="settings">Settings</h2>
+        <p style="color: black;" data-translate="language"></p>
+        <form>
+            <input type="radio" id="enButton" name="language" value="en" checked>
+            <label style="color: black;" for="enButton" data-translate="english">English</label>
+    
+            <input type="radio" id="slButton" name="language" value="sl">
+            <label style="color: black;" for="slButton" data-translate="slovenian">Slovenian</label>
+            
+            <p style="color: black;" data-translate="theme"></p>
+            <input type="radio" id="lightTheme" name="theme" value="light" checked>
+            <label style="color: black;" for="lightTheme" data-translate="lightTheme">Light</label>
+            
+            <input type="radio" id="darkTheme" name="theme" value="dark">
+            <label style="color: black;" for="darkTheme" data-translate="darkTheme">Dark</label>
+        </form>
+    
+        <button onclick="backToMenu()" data-translate="backMenu">Back to Menu</button>
     </div>
+    
+    
     <div id="story" style="display:none;">
-        <h2>Story</h2>
-        <p style="color: black; text-align: justify;">
+        <h2 data-translate="story">Story</h2>
+        <p style="color: black; text-align: justify;" data-translate="storyDescription">
             In the peaceful town of Pacmania lived Pacman, a cheerful and mischievous yellow character who enjoyed the company of his friends.
             But one day, a dark cloud of evil descended upon the town. Malevolent spirits attacked Pacmania, kidnapped Pacman's friends, and wreaked havoc throughout the city.
             In darkness and despair, Pacman decided to confront the evil spirits and rescue his friends, restoring peace to his world once again.
@@ -54,7 +67,7 @@
             This time, the labyrinth was even more intricate, and the ghosts were even more malevolent.
             Nevertheless, Pacman maintained his courage and perseverance, confronting every obstacle that came his way.
             </p>
-        <button onclick="backToMenu()">Back to Menu</button>
+        <button onclick="backToMenu()" data-translate="backMenu"></button>
     </div>
 
 
