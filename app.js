@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const playButton = document.getElementById('playButton');
     const aboutButton = document.getElementById('aboutButton');
     const settingsButton = document.getElementById('settingsButton');
+    const storyButton = document.getElementById('storyButton');
     const game = document.getElementById('game');
     const menu = document.getElementById('menu');
     const about = document.getElementById('about');
     const settings = document.getElementById('settings');
+    const story = document.getElementById('story');
 
     playButton.addEventListener('click', () => {
         menu.style.display = 'none';
@@ -23,8 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
         settings.style.display = 'block';
     });
 
+    storyButton.addEventListener('click', () => {
+        menu.style.display = 'none';
+        story.style.display = 'block';
+    });
+
     function backToMenu() {
-        const sections = document.querySelectorAll('#game, #about, #settings');
+        const sections = document.querySelectorAll('#game, #about, #settings, #story');
         sections.forEach(sec => sec.style.display = 'none');
         menu.style.display = 'block';
     }

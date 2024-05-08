@@ -179,11 +179,11 @@ h3:hover span {
     transform: scale(0.98); /* Slightly shrink when the button is clicked */
 }
 
-/* Additional styles for About and Settings */
-#about h2, #settings h2 {
+/* Additional styles for About, Settings and Story*/
+#about h2, #settings h2, #story h2 {
     color: #fa507a;
 }
 
-#about button, #settings button {
+#about button, #settings button, #story button {
     margin-top: 20px;
 }
