@@ -1,4 +1,19 @@
 {
-    "welcome": "Welcome to Our Application!",
-    "description": "This is a sample multilingual web application."
+    "play" : "Play",
+    "about" : "About",
+    "settings" : "Settings",
+    "story" : "Story",
+    "pacMan" : "Pac-Man Game",
+    "score" : "Score:",
+    "level" : "Level:",
+    "backMenu" : "Back to Menu",
+    "version" : "Version 1.0",
+    "developers" : "Developers:",
+    "english" : "English",
+    "slovenian" : "Slovenian",
+    "language" : "Language",
+    "storyDescription" : "In the peaceful town of Pacmania lived Pacman, a cheerful and mischievous yellow character who enjoyed the company of his friends.\nBut one day, a dark cloud of evil descended upon the town. Malevolent spirits attacked Pacmania, kidnapped Pacman's friends, and wreaked havoc throughout the city.\nIn darkness and despair, Pacman decided to confront the evil spirits and rescue his friends, restoring peace to his world once again.\n\nPacman knew that his journey would be full of dangers, but with courage and determination, he was ready for the challenge.\nHe accepted his fate as a hero and set out on a journey that led him through different dimensions.\nAlong the way, he encountered various characters, some were benevolent souls offering him help, while others were spirits trying to thwart his path.\nThe first level of his journey was filled with mysteries and challenges. Pacman fought his way through a labyrinth, filled with traps and dangerous ghosts.\nHowever, he never lost his determination, knowing that he had to overcome these obstacles to achieve his goal and free his friends.\nWhen Pacman successfully completed the first level, he embarked on the path of the second level.\nThis time, the labyrinth was even more intricate, and the ghosts were even more malevolent.\nNevertheless, Pacman maintained his courage and perseverance, confronting every obstacle that came his way.",
+    "theme" : "Theme",
+    "lightTheme" : "Light",
+    "darkTheme" : "Dark" 
 }

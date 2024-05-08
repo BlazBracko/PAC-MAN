@@ -3,13 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const aboutButton = document.getElementById('aboutButton');
     const settingsButton = document.getElementById('settingsButton');
     const storyButton = document.getElementById('storyButton');
-    const enButton = document.getElementById('enButton');
-    const slButton = document.getElementById('slButton');
     const game = document.getElementById('game');
     const menu = document.getElementById('menu');
     const about = document.getElementById('about');
     const settings = document.getElementById('settings');
     const story = document.getElementById('story');
+    
+    const languageForm = settings.querySelector('form');
+    const themeSelectors = document.getElementsByName('theme');
+
 
     playButton.addEventListener('click', () => {
         menu.style.display = 'none';
@@ -32,11 +34,34 @@ document.addEventListener("DOMContentLoaded", () => {
         story.style.display = 'block';
     });
 
-    enButton.addEventListener('click', () => changeLanguage('en'));
+    changeLanguage('en');
 
-    slButton.addEventListener('click', () => changeLanguage('sl'));
-    
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            bodyElement.classList.add('dark-theme');
+            bodyElement.classList.remove('light-theme');
+        } else {
+            bodyElement.classList.add('light-theme');
+            bodyElement.classList.remove('dark-theme');
+        }
+    }
 
+    themeSelectors.forEach(selector => {
+        selector.addEventListener('change', function(event) {
+            //applyTheme(event.target.value);
+            //value je "dark" in "light"
+            //hendlat to v style.css
+        });
+    });
+
+    const currentTheme = themeSelectors.length > 0 && themeSelectors[0].checked ? 'light' : 'dark';
+    //applyTheme(currentTheme);
+
+    languageForm.addEventListener('change', function(event) {
+        if (event.target.name === 'language') {
+            changeLanguage(event.target.value);
+        }
+    });
     function backToMenu() {
         const sections = document.querySelectorAll('#game, #about, #settings, #story');
         sections.forEach(sec => sec.style.display = 'none');
@@ -47,20 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function changeLanguage(lang) {
         fetch(`${lang}.json`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(translations => {
             document.querySelectorAll("[data-translate]").forEach(el => {
-                const key = el.getAttribute("data-translate");
-                el.textContent = translations[key];
+                el.textContent = translations[el.getAttribute('data-translate')];
             });
-        })
-        .catch(error => console.error('Error loading the translations:', error));
+        }).catch(error => console.error('Error loading the translations:', error));
     }
+
 
     function initGame() {
         const scoreDisplay = document.getElementById("score")

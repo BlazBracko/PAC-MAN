@@ -1,4 +1,21 @@
 {
-    "welcome": "Dobrodošli v naši aplikaciji!",
-    "description": "To je vzorčna večjezična spletna aplikacija."
+    "play": "Igraj",
+    "about": "O igri",
+    "settings": "Nastavitve",
+    "story": "Zgodba",
+    "pacMan":"Pac-Man Igra",
+    "score": "Točke:",
+    "level": "Level:",
+    "backMenu": "Nazaj na meni",
+    "version" : "Verzija 1.0",
+    "developers" : "Razvijalci:",
+    "english": "Angleško",
+    "slovenian": "Slovensko",
+    "language" : "Jezik",
+    "storyDescription": "V mirnem mestu Pacmania je živel Pacman, vesel in nagajiv rumeni lik, ki je užival v družbi svojih prijateljev.\nNekega dne pa je nad mesto padel temen oblak zla. Zlobni duhovi so napadli Pacmanio, ugrabili Pacmanove prijatelje in povzročili opustošenje po mestu.\nV temi in obupu se je Pacman odločil soočiti z zlimi duhovi in rešiti svoje prijatelje ter znova obnoviti mir v svojem svetu.\n\nPacman je vedel, da bo njegovo potovanje polno nevarnosti, a z pogumom in odločnostjo je bil pripravljen na izziv.\nSprejel je svojo usodo kot junak in se podal na potovanje, ki ga je vodilo skozi različne dimenzije.\nNa poti je srečal različne like, nekateri so bili dobrohotne duše, ki so mu ponudile pomoč, drugi pa duhovi, ki so poskušali ovirati njegovo pot.\nPrva stopnja njegovega potovanja je bila polna skrivnosti in izzivov. Pacman se je prebil skozi labirint, poln pasti in nevarnih duhov.\nVendar nikoli ni izgubil svoje odločnosti, saj je vedel, da mora premagati te ovire, da bi dosegel svoj cilj in osvobodil svoje prijatelje.\nKo je Pacman uspešno zaključil prvo stopnjo, se je podal na pot druge stopnje.\nTokrat je bil labirint še bolj zapleten in duhovi še bolj zlobni.\nKljub temu je Pacman ohranil svoj pogum in vztrajnost ter se soočil z vsako oviro, ki mu je prišla na pot.",
+    "theme" : "Tema",
+    "lightTheme" : "Svetla",
+    "darkTheme" : "Temna" 
 }
+
+
