@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Pac-man</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu" class="menu">
+        <h1 class="title">Pac-Man Game</h1>
+        <div class="button-container">
+            <button class="menu-button" id="playButton">Play</button>
+            <button class="menu-button" id="aboutButton">About</button>
+            <button class="menu-button" id="settingsButton">Settings</button>
+            <button class="menu-button" id="storyButton">Story</button>
+        </div>
+    </div>
+    <div id="game" style="display:none;">
+        <h3 class="pacman">Pac-man</h3>
+        <div class="grid"></div>
+        <h3>Score: <span id="score">0</span></h3>
+        <h3>Level: <span id="level">1</span></h3>
+        <button onclick="backToMenu()" class="menu-button back-to-menu">Back to Menu</button>
+
+    </div>
+    <div id="about" style="display:none;">
+        <h2>About the Game</h2>
+        <p style="color: black;">Version 1.0</p>
+        <p style="color: black;">Developers:</p>
+        <p style="color: black;">Blaž Bračko, Aneja Pašalič, Emanuel Planko</p>
+        <button onclick="backToMenu()">Back to Menu</button>
+    </div>
+    <div id="settings" style="display:none;">
+        <h2>Settings</h2>
+        <p style="color: black;">Configure your game settings here.</p>
+        <h1 data-translate="welcome"></h1>
+        <p data-translate="description">something here</p>
+        <button class="menu-button" id="enButton">English</button>
+        <button class="menu-button" id="slButton">Slovenian</button>
+        <button onclick="backToMenu()">Back to Menu</button>
+    </div>
+    <div id="story" style="display:none;">
+        <h2>Story</h2>
+        <p style="color: black; text-align: justify;">
+            In the peaceful town of Pacmania lived Pacman, a cheerful and mischievous yellow character who enjoyed the company of his friends.
+            But one day, a dark cloud of evil descended upon the town. Malevolent spirits attacked Pacmania, kidnapped Pacman's friends, and wreaked havoc throughout the city.
+            In darkness and despair, Pacman decided to confront the evil spirits and rescue his friends, restoring peace to his world once again.
+            Pacman knew that his journey would be full of dangers, but with courage and determination, he was ready for the challenge.
+            He accepted his fate as a hero and set out on a journey that led him through different dimensions. 
+            Along the way, he encountered various characters, some were benevolent souls offering him help, while others were spirits trying to thwart his path.
+            The first level of his journey was filled with mysteries and challenges. Pacman fought his way through a labyrinth, filled with traps and dangerous ghosts.
+            However, he never lost his determination, knowing that he had to overcome these obstacles to achieve his goal and free his friends.
+            When Pacman successfully completed the first level, he embarked on the path of the second level.
+            This time, the labyrinth was even more intricate, and the ghosts were even more malevolent.
+            Nevertheless, Pacman maintained his courage and perseverance, confronting every obstacle that came his way.
+            </p>
+        <button onclick="backToMenu()">Back to Menu</button>
+    </div>
+
+
+    <!--todo zgoda -->
+    <script src="app.js"></script>
+</body>
+</html>
