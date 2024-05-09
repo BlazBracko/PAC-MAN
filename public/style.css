@@ -1,4 +1,5 @@
-/* Osnovni reset in globalne nastavitve */
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
 html, body {
     height: 100%;
     margin: 0;
@@ -6,22 +7,21 @@ html, body {
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
     color: white;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
 }
 
-/* Nastavitve za naslove in besedilo */
-/* Nastavitve za naslove in besedilo */
 h3 {
     margin: 10px 0 20px;
     font-size: 1.5em;
-    color: rgb(74, 146, 255);
+    color: rgb(0, 0, 0);
     position: relative;
     display: inline-block;
+    font-family: 'Rampart One';
 }
 
 h3 span {
@@ -40,18 +40,14 @@ h3 span {
     border-radius: 8px;
     padding: 5px 15px;
     margin: 5px;
-    margin-top: 15px;
+    margin-top: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);  /* Dodan senci za večjo globino */
+    animation: pulse 2s infinite;
 }
 
 h3:hover span {
     transform: scale(1.1); /* Povečava ob premiku miške čez element */
     background-color: rgba(216, 232, 255, 0.5);
-}
-
-/* Poudarjanje animacije za score in level */
-#score, #level {
-    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -67,24 +63,25 @@ h3:hover span {
 }
 
 
-/* Pacman igra in elementi */
 .pacman {
-    font-size: 50px;
+    font-size: 2em;
     font-weight: 800;
+    padding-bottom: 0px;
+    text-transform: uppercase;
 }
 
 .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 560px;
-    height: 560px;
+    width: 448px;
+    height: 448px;
     position: relative;
     margin: auto;
 }
 
 .grid div {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     box-sizing: border-box;
 }
 
@@ -93,7 +90,7 @@ h3:hover span {
 }
 
 .pac-dot {
-    background-color: red;
+    background-color: #ff79c6;
     border: 5px solid white;
 }
 
@@ -127,63 +124,104 @@ h3:hover span {
     to { opacity: 0.5; }
 }
 
-/* Menu in interaktivni elementi */
 .menu {
     width: 100%;
     max-width: 600px;
     margin-bottom: 40px;
-    background-color: #000000; /* Spremenjeno v črno za boljši kontrast */
+    background-color: #000000; /* Črno ozadje za boljši kontrast */
     border-radius: 2%; /* Močno zaobljen rob */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-top: 30px;
+    margin-left: 140px;
+    margin-right: 140px;
+    margin-top: 100px;
 }
 
 .title {
-    font-size: 2em;
+    font-size: 3em;
     margin-bottom: 20px;
-    color: #ff79c6;
+    color: #ffffff; 
+    font-family: 'Rampart One', cursive; 
+    text-transform: uppercase;
 }
 
 .button-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Postavitev gumbov vertikalno */
+    align-items: center;
     gap: 10px;
     margin: 40px 40px 40px 40px;
 }
 
 .menu-button {
     padding: 10px 20px;
-    font-size: 1em;
-    color: #f8f8f2;
-    background-color: rgb(74, 146, 255);
+    font-size: 1.5em;
+    color: #ffffff; /* Bela barva pisave */
+    background-color: transparent; /* Brez ozadja */
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: color 0.5s ease;/* Počasna sprememba barve črke */
+    font-family: 'Rampart One';
+    text-transform: uppercase;
 }
-
-.menu-button.back-to-menu {
-    display: block;  /* Gumb zavzame celotno vrstico */
-    margin-top: 10px;  /* Dodaten prostor nad gumbom za boljšo vidljivost */
-    width: auto;  /* Omogoča, da gumb zavzame širino glede na svojo vsebino */
-    margin-left: auto;
-    margin-right: auto;  /* Centrira gumb v kontejnerju */
-}
-
 
 .menu-button:hover {
-    background-color: #ff79c6;
+    color: #ff79c6;
 }
 
 .menu-button:active {
-    transform: scale(0.98); /* Slightly shrink when the button is clicked */
+    transform: scale(0.98); /* Rahlo zmanjšanje ob kliku */
 }
 
-/* Additional styles for About, Settings and Story*/
-#about h2, #settings h2, #story h2 {
-    color: #fa507a;
+.back-to-menu {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 1.2em;
 }
 
-#about button, #settings button, #story button {
+h2 {
+    color: #ff79c6;
+    font-family: 'Rampart One';
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-transform: uppercase;
     margin-top: 20px;
+}
+
+#story {
+    color: rgb(255, 255, 255); 
+    background-color: #000000;
+    border-radius: 1%;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#story p {
+    text-align: center;
+    line-height: 1.8;
+    margin: 10px 90px 10px 90px;
+    font-size: 0.9em;
+}
+
+#about, #settings {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 40px;
+    background-color: #000000; 
+    border-radius: 2%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 140px;
+    margin-right: 140px;
+    margin-top: 180px;
+}
+
+.form-container {
+    margin-bottom: 20px;
 }
