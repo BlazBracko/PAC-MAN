@@ -20,58 +20,45 @@
         <div class="grid"></div>
         <h3><span data-translate="score"></span> <span id="score">0</span></h3>
         <h3><span data-translate="level"></span> <span id="level">1</span></h3>
-        <button onclick="backToMenu()" class="menu-button back-to-menu" data-translate="backMenu"></button>
-
+        <div class="back-to-menu-container">
+            <button onclick="backToMenu()" class="menu-button back-to-menu" data-translate="backMenu"></button>
+        </div>
     </div>
     <div id="about" style="display:none;">
         <h2 data-translate="about"></h2>
-        <p style="color: black;" data-translate="version">Version 1.0</p>
-        <p style="color: black;" data-translate="developers">Developers:</p>
-        <p style="color: black;">Blaž Bračko, Aneja Pašalič, Emanuel Planko</p>
-        <button onclick="backToMenu()" data-translate="backMenu"></button>
+        <p data-translate="version">Version 1.0</p>
+        <p data-translate="developers">Developers:</p>
+        <p>Blaž Bračko, Aneja Pašalič, Emanuel Planko</p>
+        <button onclick="backToMenu()" data-translate="backMenu" class="menu-button back-to-menu"></button>
     </div>
     <div id="settings" style="display:none;">
-        <h2 data-translate="settings">Settings</h2>
-        <p style="color: black;" data-translate="language"></p>
-        <form>
-            <input type="radio" id="enButton" name="language" value="en" checked>
-            <label style="color: black;" for="enButton" data-translate="english">English</label>
-    
-            <input type="radio" id="slButton" name="language" value="sl">
-            <label style="color: black;" for="slButton" data-translate="slovenian">Slovenian</label>
-            
-            <p style="color: black;" data-translate="theme"></p>
-            <input type="radio" id="lightTheme" name="theme" value="light" checked>
-            <label style="color: black;" for="lightTheme" data-translate="lightTheme">Light</label>
-            
-            <input type="radio" id="darkTheme" name="theme" value="dark">
-            <label style="color: black;" for="darkTheme" data-translate="darkTheme">Dark</label>
-        </form>
-    
-        <button onclick="backToMenu()" data-translate="backMenu">Back to Menu</button>
+        <h2 data-translate="settings"></h2>
+        <p data-translate="language"></p>
+        <div class="form-container">
+            <form>
+                <input type="radio" id="enButton" name="language" value="en" checked>
+                <label for="enButton" data-translate="english"></label>
+        
+                <input type="radio" id="slButton" name="language" value="sl">
+                <label for="slButton" data-translate="slovenian"></label>
+                
+                <p data-translate="theme"></p>
+                <input type="radio" id="lightTheme" name="theme" value="light" checked>
+                <label for="lightTheme" data-translate="lightTheme"></label>
+                
+                <input type="radio" id="darkTheme" name="theme" value="dark">
+                <label for="darkTheme" data-translate="darkTheme"></label>
+            </form>
+        </div>
+        <button onclick="backToMenu()" class="menu-button back-to-menu" data-translate="backMenu"></button>
     </div>
     
     
     <div id="story" style="display:none;">
-        <h2 data-translate="story">Story</h2>
-        <p style="color: black; text-align: justify;" data-translate="storyDescription">
-            In the peaceful town of Pacmania lived Pacman, a cheerful and mischievous yellow character who enjoyed the company of his friends.
-            But one day, a dark cloud of evil descended upon the town. Malevolent spirits attacked Pacmania, kidnapped Pacman's friends, and wreaked havoc throughout the city.
-            In darkness and despair, Pacman decided to confront the evil spirits and rescue his friends, restoring peace to his world once again.
-            Pacman knew that his journey would be full of dangers, but with courage and determination, he was ready for the challenge.
-            He accepted his fate as a hero and set out on a journey that led him through different dimensions. 
-            Along the way, he encountered various characters, some were benevolent souls offering him help, while others were spirits trying to thwart his path.
-            The first level of his journey was filled with mysteries and challenges. Pacman fought his way through a labyrinth, filled with traps and dangerous ghosts.
-            However, he never lost his determination, knowing that he had to overcome these obstacles to achieve his goal and free his friends.
-            When Pacman successfully completed the first level, he embarked on the path of the second level.
-            This time, the labyrinth was even more intricate, and the ghosts were even more malevolent.
-            Nevertheless, Pacman maintained his courage and perseverance, confronting every obstacle that came his way.
-            </p>
-        <button onclick="backToMenu()" data-translate="backMenu"></button>
+        <h2 data-translate="story"></h2>
+        <p data-translate="storyDescription"></p>
+        <button onclick="backToMenu()" class="menu-button back-to-menu" data-translate="backMenu"></button>
     </div>
-
-
-    <!--todo zgoda -->
     <script src="app.js"></script>
 </body>
 </html>
