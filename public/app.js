@@ -76,10 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(translations => {
             document.querySelectorAll("[data-translate]").forEach(el => {
                 el.textContent = translations[el.getAttribute('data-translate')];
+                const elements = document.querySelectorAll('[data-translate]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    el.innerHTML = translations[key];  // Tukaj se prevod vstavi z HTML oznakami
+                });  
             });
         }).catch(error => console.error('Error loading the translations:', error));
     }
-
 
     function initGame() {
         const scoreDisplay = document.getElementById("score")

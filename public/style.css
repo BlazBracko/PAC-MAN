@@ -108,11 +108,37 @@ h3:hover span {
     border-radius: 50%;
 }
 
-.blinky { background-color: green; }
-.pinky { background-color: pink; }
-.inky { background-color: cyan; }
-.clyde { background-color: orange; }
-.pac-man { background-color: rgba(255, 255, 0, 0.809); }
+.blinky { 
+    background-image: url('images/blinky.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.pinky { 
+    background-image: url('images/pinky.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.inky { 
+    background-image: url('images/inky.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+ }
+.clyde { 
+    background-image: url('images/clyde.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+
+.pac-man { 
+    background-image: url('images/pacman/pacman1.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+ }
 
 .scared-ghost {
     background-color: aquamarine;
@@ -138,12 +164,26 @@ h3:hover span {
 }
 
 .title {
-    font-size: 3em;
+    font-size: 3.2em;
     margin-bottom: 20px;
+    margin-top: 0px;
     color: #ffffff; 
     font-family: 'Rampart One', cursive; 
     text-transform: uppercase;
 }
+
+.larger {
+    font-size: 130%;
+}
+
+.image-replace {
+    display: inline-block;  /* Omogoča, da se element obnaša kot del teksta */
+    width: 42px;            /* Širina slike */
+    height: 42px;           /* Višina slike */
+    background-image: url('images/pacman/pacman1.svg');  /* Pot do slike */
+    background-size: cover; /* Prilagodi sliko, da pokrije celotno površino */
+    text-indent: -9999px;   /* Skrije originalno črko */
+  }  
 
 .button-container {
     display: flex;

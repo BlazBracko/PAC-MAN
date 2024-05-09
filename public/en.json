@@ -3,7 +3,7 @@
     "about" : "About",
     "settings" : "Settings",
     "story" : "Story",
-    "pacMan" : "Pac-Man Game",
+    "pacMan" : "<span class='larger'>P</span>a<span class='image-replace'></span><span class='larger'>M</span>an",
     "score" : "Score:",
     "level" : "Level:",
     "backMenu" : "Back to Menu",
