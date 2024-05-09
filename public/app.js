@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const languageForm = settings.querySelector('form');
     const themeSelectors = document.getElementsByName('theme');
 
+    let terminateGame;
 
     playButton.addEventListener('click', () => {
         menu.style.display = 'none';
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     function backToMenu() {
+        terminateGame=true;
         const sections = document.querySelectorAll('#game, #about, #settings, #story');
         sections.forEach(sec => sec.style.display = 'none');
         menu.style.display = 'block';
@@ -86,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function initGame() {
+        terminateGame=false;
         const scoreDisplay = document.getElementById("score")
         const levelDisplay = document.getElementById("level")
         levelDisplay.innerHTML = 1;
@@ -242,7 +245,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        moveInterval = setInterval(movePacman, 200); 
+        moveInterval = setInterval(function() {
+            if (terminateGame) {
+                clearInterval(moveInterval);
+                return;
+            }
+            movePacman();
+        }, 200);
 
         function pacDotEaten() {
             if (squares[pacmanCurrentIndex].classList.contains("pac-dot")) {
@@ -276,6 +285,11 @@ document.addEventListener("DOMContentLoaded", () => {
             let direction = directions[Math.floor(Math.random() * directions.length)]
 
             ghost.timerId = setInterval(function () {
+                if (terminateGame) {
+                    clearInterval(moveInterval);
+                    return;
+                }
+
                 if (
                     !squares[ghost.currentIndex + direction].classList.contains("ghost") &&
                     !squares[ghost.currentIndex + direction].classList.contains("wall")
