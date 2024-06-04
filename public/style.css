@@ -96,7 +96,35 @@ h3:hover span {
 
 .wall {
     background-color: black;
+    border: 4px solid blue; /* Default border for walls */
+    border-radius: 10px; /* Adjust this value for more or less rounding */
 }
+
+.wall.wall-top {
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.wall.wall-bottom {
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.wall.wall-left {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.wall.wall-right {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
 
 .power-pellet {
     background-color: #ffd700;

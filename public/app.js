@@ -209,12 +209,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 squares.push(square);
         
                 if (layouts[selLayout][i] === 0) squares[i].classList.add("pac-dot");
-                if (layouts[selLayout][i] === 1) squares[i].classList.add("wall");
+                if (layouts[selLayout][i] === 1) {
+                    squares[i].classList.add("wall");
+                    // Add additional classes to indicate adjacent wall squares
+                    if (i - width >= 0 && layouts[selLayout][i - width] === 1) squares[i].classList.add("wall-top");
+                    if (i + width < layouts[selLayout].length && layouts[selLayout][i + width] === 1) squares[i].classList.add("wall-bottom");
+                    if (i % width !== 0 && layouts[selLayout][i - 1] === 1) squares[i].classList.add("wall-left");
+                    if ((i + 1) % width !== 0 && layouts[selLayout][i + 1] === 1) squares[i].classList.add("wall-right");
+                }
                 if (layouts[selLayout][i] === 2) squares[i].classList.add("ghost-lair");
                 if (layouts[selLayout][i] === 3) squares[i].classList.add("power-pellet");
             }
             squares[pacmanCurrentIndex].classList.add("pac-man");
         }
+              
 
         createBoard(0);
 
