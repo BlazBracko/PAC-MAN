@@ -288,39 +288,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ghosts.forEach(ghost => moveGhost(ghost))
 
-        function moveGhost(ghost) {
-            const directions = [-1, 1, width, -width]
-            let direction = directions[Math.floor(Math.random() * directions.length)]
+        function calculateDistance(index1, index2) {
+            const x1 = index1 % width;
+            const y1 = Math.floor(index1 / width);
+            const x2 = index2 % width;
+            const y2 = Math.floor(index2 / width);
+            return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+        }
+        
 
+        function moveGhost(ghost) {
+            const directions = [-1, 1, width, -width];
+        
             ghost.timerId = setInterval(function () {
                 if (terminateGame) {
-                    clearInterval(moveInterval);
+                    clearInterval(ghost.timerId);
                     return;
                 }
-
-                if (
-                    !squares[ghost.currentIndex + direction].classList.contains("ghost") &&
-                    !squares[ghost.currentIndex + direction].classList.contains("wall")
-                ) {
-                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost")
-                    ghost.currentIndex += direction
-                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost")
-                } else direction = directions[Math.floor(Math.random() * directions.length)]
+        
+                // Find the shortest path to Pac-Man using BFS
+                const queue = [{ index: ghost.currentIndex, path: [] }];
+                const visited = new Set();
+                visited.add(ghost.currentIndex);
+        
+                while (queue.length > 0) {
+                    const { index, path } = queue.shift();
+        
+                    // If we've found Pac-Man, move in the direction of the first step in the path
+                    if (index === pacmanCurrentIndex) {
+                        if (path.length > 0) {
+                            const nextStep = path[0];
+                            squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
+                            ghost.currentIndex = nextStep;
+                            squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
+                        }
+                        break;
+                    }
+        
+                    // Explore adjacent squares
+                    directions.forEach(direction => {
+                        const newIndex = index + direction;
+                        if (
+                            !visited.has(newIndex) &&
+                            !squares[newIndex].classList.contains("wall") &&
+                            !squares[newIndex].classList.contains("ghost")
+                        ) {
+                            visited.add(newIndex);
+                            queue.push({ index: newIndex, path: [...path, newIndex] });
+                        }
+                    });
+                }
+        
                 if (ghost.isScared) {
-                    squares[ghost.currentIndex].classList.add("scared-ghost")
+                    squares[ghost.currentIndex].classList.add("scared-ghost");
                 }
-
+        
                 if (ghost.isScared && squares[ghost.currentIndex].classList.contains("pac-man")) {
-                    ghost.isScared = false
-                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost")
-                    ghost.currentIndex = ghost.startIndex
-                    score += 100
-                    scoreDisplay.innerHTML = score
-                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost")
+                    ghost.isScared = false;
+                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
+                    ghost.currentIndex = ghost.startIndex;
+                    score += 100;
+                    scoreDisplay.innerHTML = score;
+                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
                 }
-                checkForGameOver()
-            }, ghost.speed)
+        
+                checkForGameOver();
+            }, ghost.speed);
         }
+        
+        
+        
 
         function increaseGhostSpeed() {
             ghosts.forEach(ghost => {
