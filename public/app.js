@@ -114,11 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        const ghostSpeed=500;
+
         const ghosts = [
-            new Ghost("blinky", 348, 250),
-            new Ghost("pinky", 376, 400),
-            new Ghost("inky", 351, 300),
-            new Ghost("clyde", 379, 500),
+            new Ghost("blinky", 348, ghostSpeed),
+            new Ghost("pinky", 376, ghostSpeed),
+            new Ghost("inky", 351, ghostSpeed),
+            new Ghost("clyde", 379, ghostSpeed),
         ]
 
         const layouts = [
