@@ -96,7 +96,35 @@ h3:hover span {
 
 .wall {
     background-color: black;
+    border: 4px solid blue; /* Default border for walls */
+    border-radius: 10px; /* Adjust this value for more or less rounding */
 }
+
+.wall.wall-top {
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.wall.wall-bottom {
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.wall.wall-left {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.wall.wall-right {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
 
 .power-pellet {
     background-color: #ffd700;
@@ -109,25 +137,25 @@ h3:hover span {
 }
 
 .blinky { 
-    background-image: url('images/blinky.svg');
+    background-image: url('images/ghosts/blinky.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center; 
 }
 .pinky { 
-    background-image: url('images/pinky.svg');
+    background-image: url('images/ghosts/pinky.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 .inky { 
-    background-image: url('images/inky.svg');
+    background-image: url('images/ghosts/inky.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center; 
  }
 .clyde { 
-    background-image: url('images/clyde.svg');
+    background-image: url('images/ghosts/clyde.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center; 
@@ -143,6 +171,33 @@ h3:hover span {
 .scared-ghost {
     background-color: aquamarine;
     animation: flash 0.5s alternate infinite;
+}
+
+.cherry {
+    background-image: url('images/fruit/cherry.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 16px;
+    height: 16px;
+}
+
+.apple {
+    background-image: url('images/fruit/apple.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 16px;
+    height: 16px;
+}
+
+.banana {
+    background-image: url('images/fruit/banana.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 16px;
+    height: 16px;
 }
 
 @keyframes flash {

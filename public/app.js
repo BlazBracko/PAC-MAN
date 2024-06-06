@@ -114,11 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        const ghostSpeed=500;
+
         const ghosts = [
-            new Ghost("blinky", 348, 250),
-            new Ghost("pinky", 376, 400),
-            new Ghost("inky", 351, 300),
-            new Ghost("clyde", 379, 500),
+            new Ghost("blinky", 348, ghostSpeed),
+            new Ghost("pinky", 376, ghostSpeed),
+            new Ghost("inky", 351, ghostSpeed),
+            new Ghost("clyde", 379, ghostSpeed),
         ]
 
         const layouts = [
@@ -126,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
-                1, 3, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 3, 1,
+                1, 5, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 5, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
@@ -143,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
-                1, 3, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 1,
+                1, 6, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 6, 1,
                 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1,
                 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1,
                 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1,
@@ -156,9 +158,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
-                1, 3, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
+                1, 5, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -167,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 2, 2, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 1, 1, 0, 1, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 0, 0, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                1, 3, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 1, 1, 0, 1, 1, 1, 1, 0, 1,
+                1, 6, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 1, 1, 0, 1, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 0, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 1, 1, 1, 1, 0, 1,
@@ -176,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1,
                 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1,
                 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1,
                 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -188,6 +190,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // 2 - ghost-lair
         // 3 - power-pellet
         // 4 - empty
+        // 5 - apple
+        // 6 - banana
 
         function createBoard(selLayout) {
             grid.innerHTML = '';
@@ -209,31 +213,59 @@ document.addEventListener("DOMContentLoaded", () => {
                 squares.push(square);
         
                 if (layouts[selLayout][i] === 0) squares[i].classList.add("pac-dot");
-                if (layouts[selLayout][i] === 1) squares[i].classList.add("wall");
+                if (layouts[selLayout][i] === 1) {
+                    squares[i].classList.add("wall");
+                    // Add additional classes to indicate adjacent wall squares
+                    if (i - width >= 0 && layouts[selLayout][i - width] === 1) squares[i].classList.add("wall-top");
+                    if (i + width < layouts[selLayout].length && layouts[selLayout][i + width] === 1) squares[i].classList.add("wall-bottom");
+                    if (i % width !== 0 && layouts[selLayout][i - 1] === 1) squares[i].classList.add("wall-left");
+                    if ((i + 1) % width !== 0 && layouts[selLayout][i + 1] === 1) squares[i].classList.add("wall-right");
+                }
                 if (layouts[selLayout][i] === 2) squares[i].classList.add("ghost-lair");
                 if (layouts[selLayout][i] === 3) squares[i].classList.add("power-pellet");
+                if (layouts[selLayout][i] === 5) squares[i].classList.add("apple");
+                if (layouts[selLayout][i] === 6) squares[i].classList.add("banana");
             }
             squares[pacmanCurrentIndex].classList.add("pac-man");
         }
+              
 
         createBoard(0);
 
         function movePacman() {
             let potentialIndex = pacmanCurrentIndex + requestedDirection;
             if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) direction = requestedDirection; 
-            
+        
             potentialIndex = pacmanCurrentIndex + direction;
-
+        
             if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
                 squares[pacmanCurrentIndex].classList.remove("pac-man");
                 pacmanCurrentIndex = potentialIndex;
                 squares[pacmanCurrentIndex].classList.add("pac-man");
             }
-
+        
             pacDotEaten();
             powerPelletEaten();
+        
+            // Check for collisions after state updates
+            checkForEatGhost();
             checkForGameOver();
             checkForWin();
+        }
+        
+        function checkForEatGhost() {
+            // Check if Pac-Man collides with a scared ghost
+            if (squares[pacmanCurrentIndex].classList.contains("ghost") && squares[pacmanCurrentIndex].classList.contains("scared-ghost")) {
+                const ghost = ghosts.find(ghost => ghost.currentIndex === pacmanCurrentIndex);
+                if (ghost) {
+                    ghost.isScared = false;
+                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
+                    ghost.currentIndex = ghost.startIndex;
+                    score += 100;
+                    scoreDisplay.innerHTML = score;
+                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
+                }
+            }
         }
 
         document.addEventListener("keydown", function(e) {
@@ -255,65 +287,149 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function pacDotEaten() {
             if (squares[pacmanCurrentIndex].classList.contains("pac-dot")) {
-                score++
-                scoreDisplay.innerHTML = score
-                squares[pacmanCurrentIndex].classList.remove("pac-dot")
+                score++;
+                scoreDisplay.innerHTML = score;
+                squares[pacmanCurrentIndex].classList.remove("pac-dot");
             }
         }
+
+        let scareTimeout;
 
         function powerPelletEaten() {
-            if (squares[pacmanCurrentIndex].classList.contains("power-pellet")) {
-                score += 10
-                scoreDisplay.innerHTML = score
-                ghosts.forEach(ghost => ghost.isScared = true)
-                setTimeout(unScareGhosts, 10000)
-                squares[pacmanCurrentIndex].classList.remove("power-pellet")
+            if (squares[pacmanCurrentIndex].classList.contains("apple") || squares[pacmanCurrentIndex].classList.contains("banana")) {
+                score += 10;
+                scoreDisplay.innerHTML = score;
+                ghosts.forEach(ghost => ghost.isScared = true);
+                if (scareTimeout) {
+                    clearTimeout(scareTimeout);
+                }
+                scareTimeout = setTimeout(unScareGhosts, 10000);
+                squares[pacmanCurrentIndex].classList.remove("apple", "banana");
             }
         }
-
+        
         function unScareGhosts() {
-            ghosts.forEach(ghost => ghost.isScared = false)
+            ghosts.forEach(ghost => ghost.isScared = false);
+            scareTimeout = null;
         }
+        
 
         ghosts.forEach(ghost =>
             squares[ghost.currentIndex].classList.add(ghost.className, "ghost"))
 
         ghosts.forEach(ghost => moveGhost(ghost))
 
-        function moveGhost(ghost) {
-            const directions = [-1, 1, width, -width]
-            let direction = directions[Math.floor(Math.random() * directions.length)]
+        function calculateDistance(index1, index2) {
+            const x1 = index1 % width;
+            const y1 = Math.floor(index1 / width);
+            const x2 = index2 % width;
+            const y2 = Math.floor(index2 / width);
+            return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+        }
+        
 
+        function moveGhost(ghost) {
+            const directions = [-1, 1, width, -width];
+        
             ghost.timerId = setInterval(function () {
                 if (terminateGame) {
-                    clearInterval(moveInterval);
+                    clearInterval(ghost.timerId);
                     return;
                 }
-
-                if (
-                    !squares[ghost.currentIndex + direction].classList.contains("ghost") &&
-                    !squares[ghost.currentIndex + direction].classList.contains("wall")
-                ) {
-                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost")
-                    ghost.currentIndex += direction
-                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost")
-                } else direction = directions[Math.floor(Math.random() * directions.length)]
+        
+                // Determine if the ghost should chase or run away from Pac-Man
+                const targetIndex = ghost.isScared ? getFurthestSquareIndex(ghost.currentIndex) : pacmanCurrentIndex;
+        
+                // Find the shortest path to Pac-Man or the furthest square from Pac-Man using BFS
+                const queue = [{ index: ghost.currentIndex, path: [] }];
+                const visited = new Set();
+                visited.add(ghost.currentIndex);
+        
+                while (queue.length > 0) {
+                    const { index, path } = queue.shift();
+        
+                    // If we've found the target index, move in the direction of the first step in the path
+                    if (index === targetIndex) {
+                        if (path.length > 0) {
+                            const nextStep = path[0];
+                            // Remove the ghost's current classes
+                            squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
+        
+                            // If the next step contains a pac-dot, temporarily hide it
+                            if (squares[nextStep].classList.contains("pac-dot")) {
+                                squares[nextStep].classList.add("hidden-pac-dot");
+                                squares[nextStep].classList.remove("pac-dot");
+                            }
+        
+                            // Move the ghost to the next step
+                            ghost.currentIndex = nextStep;
+                            squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
+                        }
+                        break;
+                    }
+        
+                    // Explore adjacent squares
+                    directions.forEach(direction => {
+                        const newIndex = index + direction;
+                        if (
+                            !visited.has(newIndex) &&
+                            !squares[newIndex].classList.contains("wall") &&
+                            !squares[newIndex].classList.contains("ghost")
+                        ) {
+                            visited.add(newIndex);
+                            queue.push({ index: newIndex, path: [...path, newIndex] });
+                        }
+                    });
+                }
+        
+                // Restore hidden pac-dots when the ghost leaves the square
+                squares.forEach(square => {
+                    if (square.classList.contains("hidden-pac-dot") && !square.classList.contains("ghost")) {
+                        square.classList.add("pac-dot");
+                        square.classList.remove("hidden-pac-dot");
+                    }
+                });
+        
                 if (ghost.isScared) {
-                    squares[ghost.currentIndex].classList.add("scared-ghost")
+                    squares[ghost.currentIndex].classList.add("scared-ghost");
                 }
-
+        
                 if (ghost.isScared && squares[ghost.currentIndex].classList.contains("pac-man")) {
-                    ghost.isScared = false
-                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost")
-                    ghost.currentIndex = ghost.startIndex
-                    score += 100
-                    scoreDisplay.innerHTML = score
-                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost")
+                    ghost.isScared = false;
+                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
+                    ghost.currentIndex = ghost.startIndex;
+                    score += 100;
+                    scoreDisplay.innerHTML = score;
+                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
                 }
-                checkForGameOver()
-            }, ghost.speed)
+        
+                checkForGameOver();
+            }, ghost.speed);
         }
-
+        
+        function getFurthestSquareIndex(currentIndex) {
+            const directions = [-1, 1, width, -width];
+            let maxDistance = -1;
+            let furthestIndex = currentIndex;
+        
+            directions.forEach(direction => {
+                const newIndex = currentIndex + direction;
+                if (
+                    !squares[newIndex].classList.contains("wall") &&
+                    !squares[newIndex].classList.contains("ghost") &&
+                    calculateDistance(newIndex, pacmanCurrentIndex) > maxDistance
+                ) {
+                    maxDistance = calculateDistance(newIndex, pacmanCurrentIndex);
+                    furthestIndex = newIndex;
+                }
+            });
+        
+            return furthestIndex;
+        }
+        
+        
+        
+        
         function increaseGhostSpeed() {
             ghosts.forEach(ghost => {
                 ghost.speed *= 0.80; 
