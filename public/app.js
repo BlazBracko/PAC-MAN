@@ -114,11 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        const ghostSpeed=500;
+
         const ghosts = [
-            new Ghost("blinky", 348, 250),
-            new Ghost("pinky", 376, 400),
-            new Ghost("inky", 351, 300),
-            new Ghost("clyde", 379, 500),
+            new Ghost("blinky", 348, ghostSpeed),
+            new Ghost("pinky", 376, ghostSpeed),
+            new Ghost("inky", 351, ghostSpeed),
+            new Ghost("clyde", 379, ghostSpeed),
         ]
 
         const layouts = [
@@ -209,12 +211,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 squares.push(square);
         
                 if (layouts[selLayout][i] === 0) squares[i].classList.add("pac-dot");
-                if (layouts[selLayout][i] === 1) squares[i].classList.add("wall");
+                if (layouts[selLayout][i] === 1) {
+                    squares[i].classList.add("wall");
+                    // Add additional classes to indicate adjacent wall squares
+                    if (i - width >= 0 && layouts[selLayout][i - width] === 1) squares[i].classList.add("wall-top");
+                    if (i + width < layouts[selLayout].length && layouts[selLayout][i + width] === 1) squares[i].classList.add("wall-bottom");
+                    if (i % width !== 0 && layouts[selLayout][i - 1] === 1) squares[i].classList.add("wall-left");
+                    if ((i + 1) % width !== 0 && layouts[selLayout][i + 1] === 1) squares[i].classList.add("wall-right");
+                }
                 if (layouts[selLayout][i] === 2) squares[i].classList.add("ghost-lair");
                 if (layouts[selLayout][i] === 3) squares[i].classList.add("power-pellet");
             }
             squares[pacmanCurrentIndex].classList.add("pac-man");
         }
+              
 
         createBoard(0);
 
@@ -280,39 +290,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ghosts.forEach(ghost => moveGhost(ghost))
 
-        function moveGhost(ghost) {
-            const directions = [-1, 1, width, -width]
-            let direction = directions[Math.floor(Math.random() * directions.length)]
+        function calculateDistance(index1, index2) {
+            const x1 = index1 % width;
+            const y1 = Math.floor(index1 / width);
+            const x2 = index2 % width;
+            const y2 = Math.floor(index2 / width);
+            return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+        }
+        
 
+        function moveGhost(ghost) {
+            const directions = [-1, 1, width, -width];
+        
             ghost.timerId = setInterval(function () {
                 if (terminateGame) {
-                    clearInterval(moveInterval);
+                    clearInterval(ghost.timerId);
                     return;
                 }
-
-                if (
-                    !squares[ghost.currentIndex + direction].classList.contains("ghost") &&
-                    !squares[ghost.currentIndex + direction].classList.contains("wall")
-                ) {
-                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost")
-                    ghost.currentIndex += direction
-                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost")
-                } else direction = directions[Math.floor(Math.random() * directions.length)]
+        
+                // Find the shortest path to Pac-Man using BFS
+                const queue = [{ index: ghost.currentIndex, path: [] }];
+                const visited = new Set();
+                visited.add(ghost.currentIndex);
+        
+                while (queue.length > 0) {
+                    const { index, path } = queue.shift();
+        
+                    // If we've found Pac-Man, move in the direction of the first step in the path
+                    if (index === pacmanCurrentIndex) {
+                        if (path.length > 0) {
+                            const nextStep = path[0];
+                            squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
+                            ghost.currentIndex = nextStep;
+                            squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
+                        }
+                        break;
+                    }
+        
+                    // Explore adjacent squares
+                    directions.forEach(direction => {
+                        const newIndex = index + direction;
+                        if (
+                            !visited.has(newIndex) &&
+                            !squares[newIndex].classList.contains("wall") &&
+                            !squares[newIndex].classList.contains("ghost")
+                        ) {
+                            visited.add(newIndex);
+                            queue.push({ index: newIndex, path: [...path, newIndex] });
+                        }
+                    });
+                }
+        
                 if (ghost.isScared) {
-                    squares[ghost.currentIndex].classList.add("scared-ghost")
+                    squares[ghost.currentIndex].classList.add("scared-ghost");
                 }
-
+        
                 if (ghost.isScared && squares[ghost.currentIndex].classList.contains("pac-man")) {
-                    ghost.isScared = false
-                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost")
-                    ghost.currentIndex = ghost.startIndex
-                    score += 100
-                    scoreDisplay.innerHTML = score
-                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost")
+                    ghost.isScared = false;
+                    squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
+                    ghost.currentIndex = ghost.startIndex;
+                    score += 100;
+                    scoreDisplay.innerHTML = score;
+                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
                 }
-                checkForGameOver()
-            }, ghost.speed)
+        
+                checkForGameOver();
+            }, ghost.speed);
         }
+        
+        
+        
 
         function increaseGhostSpeed() {
             ghosts.forEach(ghost => {
