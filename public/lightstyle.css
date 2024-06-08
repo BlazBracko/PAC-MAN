@@ -6,7 +6,7 @@ html, body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
-    color: white;
+    color: black;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -18,7 +18,7 @@ html, body {
 h3 {
     margin: 10px 0 20px;
     font-size: 1.5em;
-    color: rgb(0, 0, 0);
+    color: red;
     position: relative;
     display: inline-block;
     font-family: 'Rampart One';
@@ -62,7 +62,6 @@ h3:hover span {
     }
 }
 
-
 .pacman {
     font-size: 2em;
     font-weight: 800;
@@ -70,34 +69,58 @@ h3:hover span {
     text-transform: uppercase;
 }
 
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 448px;
-    height: 448px;
+    width: 672px;
+    height: 672px;
     position: relative;
     margin: auto;
+    background-color: white;
+    border-radius: 20px;
 }
 
 .grid div {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     box-sizing: border-box;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.info-container h3 {
+    margin: 10px 0;
+}
+
+.back-to-menu-container {
+    margin-top: 20px;
 }
 
 .pac-dot, .power-pellet {
     border-radius: 50%;
+    background-color: inherit;
 }
 
 .pac-dot {
     background-color: #ff79c6;
-    border: 5px solid white;
+    border: 8px solid white;
 }
 
 .wall {
-    background-color: black;
-    border: 4px solid blue; /* Default border for walls */
-    border-radius: 10px; /* Adjust this value for more or less rounding */
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 15px;
 }
 
 .wall.wall-top {
@@ -124,49 +147,56 @@ h3:hover span {
     border-bottom-right-radius: 0;
 }
 
-
-
-.power-pellet {
-    background-color: #ffd700;
-    box-shadow: 0 0 10px #ffd700;
-}
-
-/* Duhovi in Pac-Man */
 .blinky, .pinky, .inky, .clyde, .pac-man {
     border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
 }
 
 .blinky { 
     background-image: url('images/ghosts/blinky.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center; 
-}
-.pinky { 
-    background-image: url('images/ghosts/pinky.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.inky { 
-    background-image: url('images/ghosts/inky.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center; 
- }
-.clyde { 
-    background-image: url('images/ghosts/clyde.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center; 
 }
 
-.pac-man { 
+.pinky { 
+    background-image: url('images/ghosts/pinky.svg');
+}
+
+.inky { 
+    background-image: url('images/ghosts/inky.svg');
+}
+
+.clyde { 
+    background-image: url('images/ghosts/clyde.svg');
+}
+
+.pac-man-1 { 
     background-image: url('images/pacman/pacman1.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center; 
- }
+}
+
+.pac-man-2 { 
+    background-image: url('images/pacman/pacman2.svg');
+}
+
+.pac-man-3 { 
+    background-image: url('images/pacman/pacman3.svg');
+}
+
+.pac-man.right { 
+    transform: rotate(0deg); 
+}
+
+.pac-man.left { 
+    transform: rotateY(180deg);
+}
+
+.pac-man.up { 
+    transform: rotate(270deg); 
+}
+
+.pac-man.down { 
+    transform: rotate(90deg); 
+}
 
 .scared-ghost {
     background-color: aquamarine;
@@ -178,17 +208,8 @@ h3:hover span {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 16px;
-    height: 16px;
-}
-
-.apple {
-    background-image: url('images/fruit/apple.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
 }
 
 .banana {
@@ -196,8 +217,8 @@ h3:hover span {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
 }
 
 @keyframes flash {
@@ -209,7 +230,7 @@ h3:hover span {
     width: 100%;
     max-width: 600px;
     margin-bottom: 40px;
-    background-color: #000000; /* Črno ozadje za boljši kontrast */
+    background-color: white; /* Črno ozadje za boljši kontrast */
     border-radius: 2%; /* Močno zaobljen rob */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-top: 30px;
@@ -222,7 +243,7 @@ h3:hover span {
     font-size: 3.2em;
     margin-bottom: 20px;
     margin-top: 0px;
-    color: #ffffff; 
+    color: red; 
     font-family: 'Rampart One', cursive; 
     text-transform: uppercase;
 }
@@ -251,7 +272,7 @@ h3:hover span {
 .menu-button {
     padding: 10px 20px;
     font-size: 1.5em;
-    color: #ffffff; /* Bela barva pisave */
+    color: black; /* Bela barva pisave */
     background-color: transparent; /* Brez ozadja */
     border: none;
     border-radius: 4px;
@@ -262,7 +283,7 @@ h3:hover span {
 }
 
 .menu-button:hover {
-    color: #ff79c6;
+    color: blue;
 }
 
 .menu-button:active {
@@ -270,13 +291,13 @@ h3:hover span {
 }
 
 .back-to-menu {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: white;
+    color: red;
     font-size: 1.2em;
 }
 
 h2 {
-    color: #ff79c6;
+    color: red;
     font-family: 'Rampart One';
     margin-bottom: 30px;
     font-size: 2.5em;
@@ -285,8 +306,8 @@ h2 {
 }
 
 #story {
-    color: rgb(255, 255, 255); 
-    background-color: #000000;
+    color: black; 
+    background-color: white;
     border-radius: 1%;
     padding-top: 10px;
     padding-bottom: 30px;
@@ -307,7 +328,7 @@ h2 {
     width: 100%;
     max-width: 600px;
     margin-bottom: 40px;
-    background-color: #000000; 
+    background-color: white; 
     border-radius: 2%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-top: 30px;

@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const languageForm = settings.querySelector('form');
     const themeSelectors = document.getElementsByName('theme');
+    const themeStylesheet = document.getElementById('themeStylesheet');
 
     let terminateGame;
 
@@ -37,32 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     changeLanguage('en');
 
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            bodyElement.classList.add('dark-theme');
-            bodyElement.classList.remove('light-theme');
-        } else {
-            bodyElement.classList.add('light-theme');
-            bodyElement.classList.remove('dark-theme');
-        }
-    }
-
-    themeSelectors.forEach(selector => {
-        selector.addEventListener('change', function(event) {
-            //applyTheme(event.target.value);
-            //value je "dark" in "light"
-            //hendlat to v style.css
-        });
-    });
-
-    const currentTheme = themeSelectors.length > 0 && themeSelectors[0].checked ? 'light' : 'dark';
-    //applyTheme(currentTheme);
-
-    languageForm.addEventListener('change', function(event) {
-        if (event.target.name === 'language') {
-            changeLanguage(event.target.value);
-        }
-    });
     function backToMenu() {
         terminateGame=true;
         const sections = document.querySelectorAll('#game, #about, #settings, #story');
@@ -71,6 +46,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.backToMenu = backToMenu; 
+
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            themeStylesheet.href = 'darkstyle.css';
+        } else {
+            themeStylesheet.href = 'lightstyle.css';
+        }
+        localStorage.setItem('theme', theme);
+    }
+
+    themeSelectors.forEach(selector => {
+        selector.addEventListener('change', function(event) {
+            applyTheme(event.target.value);
+        });
+    });
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+    document.querySelector(`input[name="theme"][value="${savedTheme}"]`).checked = true;
+
+    languageForm.addEventListener('change', function(event) {
+        if (event.target.name === 'language') {
+            changeLanguage(event.target.value);
+        }
+    });
 
     function changeLanguage(lang) {
         fetch(`${lang}.json`)
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // 2 - ghost-lair
         // 3 - power-pellet
         // 4 - empty
-        // 5 - apple
+        // 5 - cherry
         // 6 - banana
 
         function createBoard(selLayout) {
@@ -215,7 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (layouts[selLayout][i] === 0) squares[i].classList.add("pac-dot");
                 if (layouts[selLayout][i] === 1) {
                     squares[i].classList.add("wall");
-                    // Add additional classes to indicate adjacent wall squares
                     if (i - width >= 0 && layouts[selLayout][i - width] === 1) squares[i].classList.add("wall-top");
                     if (i + width < layouts[selLayout].length && layouts[selLayout][i + width] === 1) squares[i].classList.add("wall-bottom");
                     if (i % width !== 0 && layouts[selLayout][i - 1] === 1) squares[i].classList.add("wall-left");
@@ -223,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (layouts[selLayout][i] === 2) squares[i].classList.add("ghost-lair");
                 if (layouts[selLayout][i] === 3) squares[i].classList.add("power-pellet");
-                if (layouts[selLayout][i] === 5) squares[i].classList.add("apple");
+                if (layouts[selLayout][i] === 5) squares[i].classList.add("cherry");
                 if (layouts[selLayout][i] === 6) squares[i].classList.add("banana");
             }
             squares[pacmanCurrentIndex].classList.add("pac-man");
@@ -232,29 +231,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
         createBoard(0);
 
+        let currentPacmanImage = 1;
+        let currentDirection = 'right';
+        
         function movePacman() {
             let potentialIndex = pacmanCurrentIndex + requestedDirection;
             if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) direction = requestedDirection; 
-        
+            
             potentialIndex = pacmanCurrentIndex + direction;
         
             if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
-                squares[pacmanCurrentIndex].classList.remove("pac-man");
+                squares[pacmanCurrentIndex].classList.remove("pac-man", "pac-man-1", "pac-man-2", "pac-man-3", "left", "right", "up", "down");
                 pacmanCurrentIndex = potentialIndex;
-                squares[pacmanCurrentIndex].classList.add("pac-man");
+                squares[pacmanCurrentIndex].classList.add("pac-man", currentDirection);
+                switchPacmanImage();
             }
         
             pacDotEaten();
             powerPelletEaten();
         
-            // Check for collisions after state updates
             checkForEatGhost();
             checkForGameOver();
             checkForWin();
         }
         
+        function switchPacmanImage() {
+            const pacmanClass = `pac-man-${currentPacmanImage}`;
+            squares[pacmanCurrentIndex].classList.remove(`pac-man-1`, `pac-man-2`, `pac-man-3`);
+            squares[pacmanCurrentIndex].classList.add(pacmanClass);
+        
+            currentPacmanImage++;
+            if (currentPacmanImage > 3) {
+                currentPacmanImage = 1;
+            }
+        }
+        
+        
         function checkForEatGhost() {
-            // Check if Pac-Man collides with a scared ghost
             if (squares[pacmanCurrentIndex].classList.contains("ghost") && squares[pacmanCurrentIndex].classList.contains("scared-ghost")) {
                 const ghost = ghosts.find(ghost => ghost.currentIndex === pacmanCurrentIndex);
                 if (ghost) {
@@ -269,11 +282,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         document.addEventListener("keydown", function(e) {
+            let potentialIndex;
             switch (e.key) {
-                case "ArrowLeft": requestedDirection = -1; break;
-                case "ArrowUp": requestedDirection = -width; break;
-                case "ArrowRight": requestedDirection = 1; break;
-                case "ArrowDown": requestedDirection = width; break;
+                case "ArrowLeft":
+                    potentialIndex = pacmanCurrentIndex - 1;
+                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                        requestedDirection = -1;
+                        currentDirection = 'left';
+                    }
+                    break;
+                case "ArrowUp":
+                    potentialIndex = pacmanCurrentIndex - width;
+                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                        requestedDirection = -width;
+                        currentDirection = 'up';
+                    }
+                    break;
+                case "ArrowRight":
+                    potentialIndex = pacmanCurrentIndex + 1;
+                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                        requestedDirection = 1;
+                        currentDirection = 'right';
+                    }
+                    break;
+                case "ArrowDown":
+                    potentialIndex = pacmanCurrentIndex + width;
+                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                        requestedDirection = width;
+                        currentDirection = 'down';
+                    }
+                    break;
+            }
+        
+            if (potentialIndex !== undefined && !squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                squares[pacmanCurrentIndex].classList.remove("left", "right", "up", "down");
+                squares[pacmanCurrentIndex].classList.add(currentDirection);
             }
         });
 
@@ -296,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let scareTimeout;
 
         function powerPelletEaten() {
-            if (squares[pacmanCurrentIndex].classList.contains("apple") || squares[pacmanCurrentIndex].classList.contains("banana")) {
+            if (squares[pacmanCurrentIndex].classList.contains("cherry") || squares[pacmanCurrentIndex].classList.contains("banana")) {
                 score += 10;
                 scoreDisplay.innerHTML = score;
                 ghosts.forEach(ghost => ghost.isScared = true);
@@ -304,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     clearTimeout(scareTimeout);
                 }
                 scareTimeout = setTimeout(unScareGhosts, 10000);
-                squares[pacmanCurrentIndex].classList.remove("apple", "banana");
+                squares[pacmanCurrentIndex].classList.remove("cherry", "banana");
             }
         }
         
@@ -330,17 +373,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function moveGhost(ghost) {
             const directions = [-1, 1, width, -width];
-        
+            
             ghost.timerId = setInterval(function () {
                 if (terminateGame) {
                     clearInterval(ghost.timerId);
                     return;
                 }
         
-                // Determine if the ghost should chase or run away from Pac-Man
                 const targetIndex = ghost.isScared ? getFurthestSquareIndex(ghost.currentIndex) : pacmanCurrentIndex;
         
-                // Find the shortest path to Pac-Man or the furthest square from Pac-Man using BFS
                 const queue = [{ index: ghost.currentIndex, path: [] }];
                 const visited = new Set();
                 visited.add(ghost.currentIndex);
@@ -348,27 +389,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 while (queue.length > 0) {
                     const { index, path } = queue.shift();
         
-                    // If we've found the target index, move in the direction of the first step in the path
                     if (index === targetIndex) {
                         if (path.length > 0) {
                             const nextStep = path[0];
-                            // Remove the ghost's current classes
+        
                             squares[ghost.currentIndex].classList.remove(ghost.className, "ghost", "scared-ghost");
         
-                            // If the next step contains a pac-dot, temporarily hide it
                             if (squares[nextStep].classList.contains("pac-dot")) {
                                 squares[nextStep].classList.add("hidden-pac-dot");
                                 squares[nextStep].classList.remove("pac-dot");
                             }
         
-                            // Move the ghost to the next step
+                            if (squares[nextStep].classList.contains("pac-man") || squares[nextStep].classList.contains("pac-man-1") || squares[nextStep].classList.contains("pac-man-2") || squares[nextStep].classList.contains("pac-man-3")) {
+                                squares[nextStep].classList.remove("pac-man", "pac-man-1", "pac-man-2", "pac-man-3");
+                            }
+        
                             ghost.currentIndex = nextStep;
                             squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
                         }
                         break;
                     }
         
-                    // Explore adjacent squares
                     directions.forEach(direction => {
                         const newIndex = index + direction;
                         if (
@@ -382,7 +423,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
         
-                // Restore hidden pac-dots when the ghost leaves the square
                 squares.forEach(square => {
                     if (square.classList.contains("hidden-pac-dot") && !square.classList.contains("ghost")) {
                         square.classList.add("pac-dot");

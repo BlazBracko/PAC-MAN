@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: black; /* Background color for the entire app */
+    color: white;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+h3 {
+    margin: 10px 0 20px;
+    font-size: 1.5em;
+    color: white;
+    position: relative;
+    display: inline-block;
+    font-family: 'Rampart One';
+}
+
+h3 span {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: rgba(216, 232, 255, 0.2);
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+#score, #level {
+    font-size: 0.7em;
+    font-weight: bold;
+    color: #064755;
+    background-color: white;  /* Dodana pol-prosojna bela ozadje za boljši kontrast */
+    border-radius: 8px;
+    padding: 5px 15px;
+    margin: 5px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px white;  /* Dodan senci za večjo globino */
+    animation: pulse 2s infinite;
+}
+
+h3:hover span {
+    transform: scale(1.1); /* Povečava ob premiku miške čez element */
+    background-color: rgba(216, 232, 255, 0.5);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(74, 146, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 10px 10px rgba(74, 146, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(74, 146, 255, 0);
+    }
+}
+
+.pacman {
+    font-size: 2em;
+    font-weight: 800;
+    padding-bottom: 0px;
+    text-transform: uppercase;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 672px;
+    height: 672px;
+    position: relative;
+    margin: auto;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.grid div {
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.info-container h3 {
+    margin: 10px 0;
+}
+
+.back-to-menu-container {
+    margin-top: 20px;
+}
+
+.pac-dot, .power-pellet {
+    border-radius: 50%;
+    background-color: inherit;
+}
+
+.pac-dot {
+    background-color: #ff79c6;
+    border: 8px solid black;
+}
+
+.wall {
+    background-color: black;
+    border: 3px solid blue;
+    border-radius: 15px;
+}
+
+.wall.wall-top {
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.wall.wall-bottom {
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.wall.wall-left {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.wall.wall-right {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.blinky, .pinky, .inky, .clyde, .pac-man {
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+
+.blinky { 
+    background-image: url('images/ghosts/blinky.svg');
+}
+
+.pinky { 
+    background-image: url('images/ghosts/pinky.svg');
+}
+
+.inky { 
+    background-image: url('images/ghosts/inky.svg');
+}
+
+.clyde { 
+    background-image: url('images/ghosts/clyde.svg');
+}
+
+.pac-man-1 { 
+    background-image: url('images/pacman/pacman1.svg');
+}
+
+.pac-man-2 { 
+    background-image: url('images/pacman/pacman2.svg');
+}
+
+.pac-man-3 { 
+    background-image: url('images/pacman/pacman3.svg');
+}
+
+.pac-man.right { 
+    transform: rotate(0deg); 
+}
+
+.pac-man.left { 
+    transform: rotateY(180deg);
+}
+
+.pac-man.up { 
+    transform: rotate(270deg); 
+}
+
+.pac-man.down { 
+    transform: rotate(90deg); 
+}
+
+.scared-ghost {
+    background-color: aquamarine;
+    animation: flash 0.5s alternate infinite;
+}
+
+.cherry {
+    background-image: url('images/fruit/cherry.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+}
+
+.banana {
+    background-image: url('images/fruit/banana.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+}
+
+@keyframes flash {
+    from { opacity: 1.0; }
+    to { opacity: 0.5; }
+}
+
+.menu {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 40px;
+    background-color: #000000; /* Črno ozadje za boljši kontrast */
+    border-radius: 2%; /* Močno zaobljen rob */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 30px;
+    margin-left: 140px;
+    margin-right: 140px;
+    margin-top: 100px;
+}
+
+.title {
+    font-size: 3.2em;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    color: #ffffff; 
+    font-family: 'Rampart One', cursive; 
+    text-transform: uppercase;
+}
+
+.larger {
+    font-size: 130%;
+}
+
+.image-replace {
+    display: inline-block;  /* Omogoča, da se element obnaša kot del teksta */
+    width: 42px;            /* Širina slike */
+    height: 42px;           /* Višina slike */
+    background-image: url('images/pacman/pacman1.svg');  /* Pot do slike */
+    background-size: cover; /* Prilagodi sliko, da pokrije celotno površino */
+    text-indent: -9999px;   /* Skrije originalno črko */
+  }  
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Postavitev gumbov vertikalno */
+    align-items: center;
+    gap: 10px;
+    margin: 40px 40px 40px 40px;
+}
+
+.menu-button {
+    padding: 10px 20px;
+    font-size: 1.5em;
+    color: #ffffff; /* Bela barva pisave */
+    background-color: transparent; /* Brez ozadja */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.5s ease;/* Počasna sprememba barve črke */
+    font-family: 'Rampart One';
+    text-transform: uppercase;
+}
+
+.menu-button:hover {
+    color: #ff79c6;
+}
+
+.menu-button:active {
+    transform: scale(0.98); /* Rahlo zmanjšanje ob kliku */
+}
+
+.back-to-menu {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+h2 {
+    color: #ff79c6;
+    font-family: 'Rampart One';
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+#story {
+    color: rgb(255, 255, 255); 
+    background-color: #000000;
+    border-radius: 1%;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#story p {
+    text-align: center;
+    line-height: 1.8;
+    margin: 10px 90px 10px 90px;
+    font-size: 0.9em;
+}
+
+#about, #settings {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 40px;
+    background-color: #000000; 
+    border-radius: 2%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 140px;
+    margin-right: 140px;
+    margin-top: 180px;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}

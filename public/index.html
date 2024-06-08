@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Pac-man</title>
-    <link rel="stylesheet" href="style.css">
+    <link id="themeStylesheet"  link rel="stylesheet" href="darkstyle.css">
 </head>
 <body>
     <div id="menu" class="menu">
@@ -17,13 +17,18 @@
     </div>
     <div id="game" style="display:none;">
         <h3 class="pacman">Pac-man</h3>
-        <div class="grid"></div>
-        <h3><span data-translate="score"></span> <span id="score">0</span></h3>
-        <h3><span data-translate="level"></span> <span id="level">1</span></h3>
-        <div class="back-to-menu-container">
-            <button onclick="backToMenu()" class="menu-button back-to-menu" data-translate="backMenu"></button>
+        <div class="game-container">
+            <div class="grid"></div>
+            <div class="info-container">
+                <h3><span data-translate="score"></span> <span id="score">0</span></h3>
+                <h3><span data-translate="level"></span> <span id="level">1</span></h3>
+                <div class="back-to-menu-container">
+                    <button onclick="backToMenu()" class="menu-button back-to-menu" data-translate="backMenu"></button>
+                </div>
+            </div>
         </div>
-    </div>
+    </div>    
+     
     <div id="about" style="display:none;">
         <h2 data-translate="about"></h2>
         <p data-translate="version">Version 1.0</p>
@@ -43,10 +48,10 @@
                 <label for="slButton" data-translate="slovenian"></label>
                 
                 <p data-translate="theme"></p>
-                <input type="radio" id="lightTheme" name="theme" value="light" checked>
+                <input type="radio" id="lightTheme" name="theme" value="light">
                 <label for="lightTheme" data-translate="lightTheme"></label>
                 
-                <input type="radio" id="darkTheme" name="theme" value="dark">
+                <input type="radio" id="darkTheme" name="theme" value="dark" checked>
                 <label for="darkTheme" data-translate="darkTheme"></label>
             </form>
         </div>
