@@ -5,7 +5,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: black; /* Background color for the entire app */
+    background-color: rgb(0, 0, 0); /* Background color for the entire app */
     color: white;
     overflow: auto;
     display: flex;
@@ -27,7 +27,7 @@ h3 {
 h3 span {
     display: inline-block;
     padding: 5px 10px;
-    background-color: rgba(216, 232, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.712);
     border-radius: 5px;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease;
 }
@@ -35,8 +35,8 @@ h3 span {
 #score, #level {
     font-size: 0.7em;
     font-weight: bold;
-    color: #064755;
-    background-color: white;  /* Dodana pol-prosojna bela ozadje za boljši kontrast */
+    color: #ffffff;
+    background-color: rgb(0, 0, 0);  /* Dodana pol-prosojna bela ozadje za boljši kontrast */
     border-radius: 8px;
     padding: 5px 15px;
     margin: 5px;
@@ -47,12 +47,12 @@ h3 span {
 
 h3:hover span {
     transform: scale(1.1); /* Povečava ob premiku miške čez element */
-    background-color: rgba(216, 232, 255, 0.5);
+    background-color: rgba(40, 40, 41, 0.3);
 }
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(74, 146, 255, 0.7);
+        box-shadow: 0 0 0 0 rgba(74, 146, 255, 0.9);
     }
     70% {
         box-shadow: 0 0 10px 10px rgba(74, 146, 255, 0);
@@ -70,9 +70,14 @@ h3:hover span {
 }
 
 .game-container {
+    margin-left: 200px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.menu-button.back-to-menu-game {
+    font-size: 18px;
 }
 
 .grid {

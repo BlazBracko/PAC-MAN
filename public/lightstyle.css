@@ -18,7 +18,7 @@ html, body {
 h3 {
     margin: 10px 0 20px;
     font-size: 1.5em;
-    color: red;
+    color: rgb(0, 0, 0);
     position: relative;
     display: inline-block;
     font-family: 'Rampart One';
@@ -27,7 +27,7 @@ h3 {
 h3 span {
     display: inline-block;
     padding: 5px 10px;
-    background-color: rgba(216, 232, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease;
 }
@@ -47,7 +47,6 @@ h3 span {
 
 h3:hover span {
     transform: scale(1.1); /* Povečava ob premiku miške čez element */
-    background-color: rgba(216, 232, 255, 0.5);
 }
 
 @keyframes pulse {
@@ -70,9 +69,10 @@ h3:hover span {
 }
 
 .game-container {
+    margin-left: 200px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .grid {
@@ -230,7 +230,7 @@ h3:hover span {
     width: 100%;
     max-width: 600px;
     margin-bottom: 40px;
-    background-color: white; /* Črno ozadje za boljši kontrast */
+    background-color: rgb(0, 0, 0); 
     border-radius: 2%; /* Močno zaobljen rob */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-top: 30px;
@@ -243,7 +243,7 @@ h3:hover span {
     font-size: 3.2em;
     margin-bottom: 20px;
     margin-top: 0px;
-    color: red; 
+    color: rgb(255, 255, 255); 
     font-family: 'Rampart One', cursive; 
     text-transform: uppercase;
 }
@@ -272,7 +272,7 @@ h3:hover span {
 .menu-button {
     padding: 10px 20px;
     font-size: 1.5em;
-    color: black; /* Bela barva pisave */
+    color: rgb(255, 255, 255); /* Bela barva pisave */
     background-color: transparent; /* Brez ozadja */
     border: none;
     border-radius: 4px;
@@ -282,8 +282,14 @@ h3:hover span {
     text-transform: uppercase;
 }
 
+.menu-button.back-to-menu-game {
+    color: black;
+    background-color: white;
+    font-size: 18px;
+}
+
 .menu-button:hover {
-    color: blue;
+    color: #ff79c6;
 }
 
 .menu-button:active {
@@ -291,13 +297,13 @@ h3:hover span {
 }
 
 .back-to-menu {
-    background-color: white;
-    color: red;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 1.2em;
 }
 
 h2 {
-    color: red;
+    color: #ff79c6;
     font-family: 'Rampart One';
     margin-bottom: 30px;
     font-size: 2.5em;
@@ -306,8 +312,8 @@ h2 {
 }
 
 #story {
-    color: black; 
-    background-color: white;
+    color: rgb(255, 255, 255); 
+    background-color: rgb(0, 0, 0);
     border-radius: 1%;
     padding-top: 10px;
     padding-bottom: 30px;
@@ -328,7 +334,8 @@ h2 {
     width: 100%;
     max-width: 600px;
     margin-bottom: 40px;
-    background-color: white; 
+    color: #ffffff;
+    background-color: rgb(0, 0, 0); 
     border-radius: 2%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-top: 30px;
