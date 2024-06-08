@@ -235,10 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let currentDirection = 'right';
         
         function movePacman() {
-            let potentialIndex = pacmanCurrentIndex + requestedDirection;
-            if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) direction = requestedDirection; 
-            
-            potentialIndex = pacmanCurrentIndex + direction;
+            let potentialIndex = pacmanCurrentIndex + direction;
         
             if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
                 squares[pacmanCurrentIndex].classList.remove("pac-man", "pac-man-1", "pac-man-2", "pac-man-3", "left", "right", "up", "down");
@@ -253,6 +250,13 @@ document.addEventListener("DOMContentLoaded", () => {
             checkForEatGhost();
             checkForGameOver();
             checkForWin();
+        
+            // Handle the requested direction change
+            potentialIndex = pacmanCurrentIndex + requestedDirection;
+            if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
+                direction = requestedDirection;
+                currentDirection = requestedAppearanceDirection; // Update appearance direction when changing actual direction
+            }
         }
         
         function switchPacmanImage() {
@@ -282,41 +286,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         document.addEventListener("keydown", function(e) {
-            let potentialIndex;
             switch (e.key) {
                 case "ArrowLeft":
-                    potentialIndex = pacmanCurrentIndex - 1;
-                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
-                        requestedDirection = -1;
-                        currentDirection = 'left';
-                    }
+                    requestedDirection = -1;
+                    requestedAppearanceDirection = 'left';
                     break;
                 case "ArrowUp":
-                    potentialIndex = pacmanCurrentIndex - width;
-                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
-                        requestedDirection = -width;
-                        currentDirection = 'up';
-                    }
+                    requestedDirection = -width;
+                    requestedAppearanceDirection = 'up';
                     break;
                 case "ArrowRight":
-                    potentialIndex = pacmanCurrentIndex + 1;
-                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
-                        requestedDirection = 1;
-                        currentDirection = 'right';
-                    }
+                    requestedDirection = 1;
+                    requestedAppearanceDirection = 'right';
                     break;
                 case "ArrowDown":
-                    potentialIndex = pacmanCurrentIndex + width;
-                    if (!squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
-                        requestedDirection = width;
-                        currentDirection = 'down';
-                    }
+                    requestedDirection = width;
+                    requestedAppearanceDirection = 'down';
                     break;
-            }
-        
-            if (potentialIndex !== undefined && !squares[potentialIndex].classList.contains("wall") && !squares[potentialIndex].classList.contains("ghost-lair")) {
-                squares[pacmanCurrentIndex].classList.remove("left", "right", "up", "down");
-                squares[pacmanCurrentIndex].classList.add(currentDirection);
             }
         });
 
