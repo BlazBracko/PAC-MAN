@@ -479,24 +479,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function checkForWin() {
             if (score >= 274 && level === 1) {
-                level++; 
-                pacmanCurrentIndex = 490
-                increaseGhostSpeed(); 
-                createBoard(1)
+                level++;
+                pacmanCurrentIndex = 490;
+                increaseGhostSpeed();
+                createBoard(1);
                 ghosts.forEach(ghost => {
-                    ghost.currentIndex = ghost.startIndex; 
-                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost"); 
+                    ghost.currentIndex = ghost.startIndex;
+                    ghost.isScared = false; // Reset scared state
+                    squares[ghost.currentIndex].classList.add(ghost.className, "ghost");
                 });
                 scoreDisplay.innerHTML = score;
                 levelDisplay.innerHTML = 2;
-                alert("Level 1 complete, lets see how u handle level 2.")
+                alert("Level 1 complete, let's see how you handle level 2.");
             } else if (score >= 568 && level === 2) {
-                ghosts.forEach(ghost => clearInterval(ghost.timerId))
-                document.removeEventListener("keyup", movePacman)
-                alert("You won."); 
+                ghosts.forEach(ghost => clearInterval(ghost.timerId));
+                document.removeEventListener("keyup", movePacman);
+                alert("You won.");
                 score = 0;
                 level = 1;
-                backToMenu(); 
+                backToMenu();
             }
         }
     }
